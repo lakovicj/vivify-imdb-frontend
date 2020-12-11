@@ -7,34 +7,14 @@ import { loginSchema } from '../forms/validation/authSchemas';
 
 class Login extends Component {
   
-  state = {
-    email: '',
-    password: ''
-  };
-
-  handleInputChange = field => event => this.setState({ [field]: event.target.value });
-
-  submit = event => {
-    event.preventDefault();
-
-    let logInData = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.props.logIn(logInData);
-  };
-
-
-  /*
   submit = (credentials, setSubmitting) => {
     this.props.logIn(credentials);
     setSubmitting(false);
   }
-  */
-
+  
   render() {
     return (
-      /*
+      
       <div>
         <Formik
           initialValues={{
@@ -62,26 +42,7 @@ class Login extends Component {
           )}
         </Formik>
       </div>
-      */
-      <div>
-        <form onSubmit={this.submit}>
-          <h2>Log In</h2>
-          <input
-            type="text"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleInputChange('email')}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleInputChange('password')}
-          />
-          <input type="submit" value="Log in" />
-          {this.props.loginError && <p>Login error</p>}
-        </form>
-      </div>
+      
       
     );
   }
