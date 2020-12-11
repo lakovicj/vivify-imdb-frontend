@@ -25,4 +25,11 @@ const registerSchema =  Yup.object().shape({
                             .required('You have to confirm password')
 });
 
-export { registerSchema }
+const loginSchema =  Yup.object().shape({
+    email:           Yup.string()
+                            .max(255, 'Email should be 255 characters max')
+                            .email('Invalid email')
+                            .required('Email is required')
+})
+
+export { registerSchema, loginSchema }
