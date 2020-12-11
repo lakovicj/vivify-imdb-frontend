@@ -4,22 +4,21 @@ import { withRouter } from 'react-router-dom';
 
 import { getMovies } from '../store/actions/MovieActions';
 import MovieCard from '../component/MovieCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { MovieList } from '../component/MovieList';
 
 class Home extends Component {
   componentDidMount() {
     this.props.getMovies();
   }
 
-  renderMovies = () => {
-    return this.props.movies.map(movie => <MovieCard key={movie.id} movie={movie} />);
-  };
 
   render() {
     return (
       <div>
         <p>Welcome to Pocket IMDb</p>
         <h4>Movies</h4>
-        {this.renderMovies()}
+        <MovieList movies={this.props.movies}/>
       </div>
     );
   }
