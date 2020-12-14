@@ -1,4 +1,4 @@
-import { SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES } from '../actions/ActionTypes';
+import { SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES } from '../actions/types/MovieActionTypes';
 
 const initialState = {
   all: [],
