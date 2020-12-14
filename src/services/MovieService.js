@@ -20,6 +20,11 @@ class MovieService extends ApiService {
     return this.apiClient.get(endpoint);
   }
 
+  getMovieById = (payload) => {
+    const endpoint = ENDPOINTS.MOVIES + "/" + payload;
+    return this.apiClient.get(endpoint);
+  }
+
   getToken = () => {
     console.log("getToken()");
     const user = localStorage.getItem('user');
