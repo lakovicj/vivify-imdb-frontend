@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import { movieService } from '../../services/MovieService';
-import { setMovies, setTotalMovies } from '../actions/MovieActions';
+import { setMovie, setMovies, setTotalMovies } from '../actions/MovieActions';
 
 export function* moviesGet() {
   try {
@@ -13,12 +13,21 @@ export function* moviesGet() {
   }
 }
 
-export function* moviesGetByPage({payload}) {
+export function* moviesGetByPage({ payload }) {
   try {
     const { data } = yield call(movieService.getMoviesByPage, payload);
     yield put(setMovies(data.movies));
     yield put(setTotalMovies(data.totalMovies));
   } catch (error) {
-    console.log({error});
+    console.log({ error });
+  }
+}
+
+export function* movieGetById({ payload }) {
+  try {
+    const { data } = yield call(movieService.getMovieById, payload);
+    yield put(setMovie(data));
+  } catch (error) {
+    console.log(error);
   }
 }
