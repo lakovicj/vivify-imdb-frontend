@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MovieCard = ({ movie }) => {
-  console.log(movie);
   const sliceDescription = description => {
     return description.length > 100 ? description.slice(0, 150) + "..." : description;
   }
