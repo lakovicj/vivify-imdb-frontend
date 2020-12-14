@@ -1,5 +1,4 @@
 import { call, put } from 'redux-saga/effects';
-
 import { movieService } from '../../services/MovieService';
 import { setMovie, setMovies, setTotalMovies } from '../actions/MovieActions';
 
@@ -31,3 +30,16 @@ export function* movieGetById({ payload }) {
     console.log(error);
   }
 }
+
+export function* moviesSearch({ payload }) {
+  try {
+    // dodaj debounce
+    const { data } = yield call(movieService.searchMovies, payload);
+    yield put(setMovies(data.movies));
+    yield put(setTotalMovies(data.totalMovies));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+

@@ -1,7 +1,8 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  MOVIES: '/api/movies'
+  MOVIES: '/api/movies',
+  SEARCH_MOVIES: '/api/search/movies'
 };
 
 class MovieService extends ApiService {
@@ -22,6 +23,11 @@ class MovieService extends ApiService {
 
   getMovieById = (payload) => {
     const endpoint = ENDPOINTS.MOVIES + "/" + payload;
+    return this.apiClient.get(endpoint);
+  }
+
+  searchMovies = ({ page, perPage, title }) => {
+    const endpoint = `${ENDPOINTS.SEARCH_MOVIES}?perPage=${perPage}&page=${page}&title=${title}`;
     return this.apiClient.get(endpoint);
   }
 
