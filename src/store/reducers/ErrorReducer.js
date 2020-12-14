@@ -1,4 +1,4 @@
-import { LOGIN_ERROR, REGISTER_ERROR } from '../actions/ActionTypes';
+import { LOGIN_ERROR, REGISTER_ERROR } from '../actions/types/AuthActionTypes';
 
 const initialState = {
   loginError: false,

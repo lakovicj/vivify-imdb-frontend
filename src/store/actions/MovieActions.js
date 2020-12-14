@@ -1,4 +1,4 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE } from './ActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE } from './types/MovieActionTypes';
 
 export const getMovies = () => {
   return {
