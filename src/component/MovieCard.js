@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MovieCard = ({ movie }) => {
-
   const sliceDescription = description => {
     return description.length > 100 ? description.slice(0, 150) + "..." : description;
   }
@@ -13,7 +12,7 @@ const MovieCard = ({ movie }) => {
 
   return (
       <div className="card mb-4">
-        <img className="card-img-top" src={movie.image_url} alt="Card image cap"/>
+        <img className="card-img-top" src={movie.image_url} alt="...."/>
         <div className="card-body">
           <h5 className="card-title">{movie.title}</h5>
           <p className="card-text">{sliceDescription(movie.description)}</p>
