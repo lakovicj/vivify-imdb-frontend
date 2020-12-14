@@ -5,7 +5,7 @@ const ENDPOINTS = {
 };
 
 class MovieService extends ApiService {
-  
+
   constructor() {
     super();
     this.setAuthorizationHeader();
@@ -14,6 +14,11 @@ class MovieService extends ApiService {
   getMovies = () => {
     return this.apiClient.get(ENDPOINTS.MOVIES);
   };
+
+  getMoviesByPage = ({ page, perPage }) => {
+    const endpoint = ENDPOINTS.MOVIES + "?perPage=" + perPage + "&page=" + page;
+    return this.apiClient.get(endpoint);
+  }
 
   getToken = () => {
     console.log("getToken()");
