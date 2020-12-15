@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import MovieCard from './MovieCard';
+import { reactOnMovie } from '../store/actions/MovieActions';
 
-export class MovieList extends Component {
+class MovieList extends Component {
 
     movieCards = () => {
-        return this.props.movies.map((m, i) => 
+        return this.props.movies.map((m, i) =>
             <div key={m.id} className="col-md-4 d-flex">
-                <MovieCard movie={m} />
+                <MovieCard movie={m} reactOnMovie={this.props.reactOnMovie}/>
             </div>
         )
     }
@@ -35,8 +36,12 @@ export class MovieList extends Component {
 
 const mapStateToProps = state => {
     return {
-      movies: state.movie.all,
+        movies: state.movie.all,
     };
-  };
+};
 
-export default connect(mapStateToProps)(MovieList);
+const mapDispatchToProps = {
+    reactOnMovie
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
