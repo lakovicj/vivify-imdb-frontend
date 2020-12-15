@@ -1,4 +1,4 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES } from './types/MovieActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES, REACT_ON_MOVIE, UPDATE_MOVIE_REACTIONS } from './types/MovieActionTypes';
 
 export const getMovies = () => {
   return {
@@ -51,6 +51,20 @@ export const searchMovies = payload => {
 export const filterMovies = payload => {
   return {
     type: FILTER_MOVIES,
+    payload
+  }
+}
+
+export const reactOnMovie = payload => {
+  return {
+    type: REACT_ON_MOVIE,
+    payload
+  }
+}
+
+export const updateMovieReactions = payload => {
+  return {
+    type: UPDATE_MOVIE_REACTIONS,
     payload
   }
 }

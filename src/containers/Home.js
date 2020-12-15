@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { getMovies, getMoviesByPage, searchMovies, filterMovies } from '../store/actions/MovieActions';
 import { getAllGenres } from '../store/actions/GenreActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { MovieList } from '../component/MovieList';
+import MovieList from '../component/MovieList';
 import Pagination from '../component/Pagination';
 import SearchInput from '../component/SearchInput';
 import { GenreFilter } from '../component/GenreFilter';

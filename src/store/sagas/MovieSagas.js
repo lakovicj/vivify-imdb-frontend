@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { movieService } from '../../services/MovieService';
-import { setMovie, setMovies, setTotalMovies } from '../actions/MovieActions';
+import { setMovie, setMovies, setTotalMovies, updateMovieReactions } from '../actions/MovieActions';
 
 export function* moviesGet() {
   try {
@@ -46,6 +46,15 @@ export function* moviesFilter({ payload }) {
     const { data } = yield call(movieService.filterMovies, payload);
     yield put(setMovies(data.movies));
     yield put(setTotalMovies(data.totalMovies));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export function* moviesReaction({ payload }) {
+  try {
+    const { data } = yield call(movieService.reactOnMovie, payload);
+    yield put(updateMovieReactions(data));
   } catch (error) {
     console.log(error)
   }

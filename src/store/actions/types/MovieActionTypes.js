@@ -7,3 +7,5 @@ export const GET_MOVIE_BY_ID = 'GET_MOVIE_BY_ID';
 export const SET_MOVIE = 'SET_MOVIE';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const FILTER_MOVIES = 'FILTER_MOVIES';
+export const REACT_ON_MOVIE = 'REACT_ON_MOVIE';
+export const UPDATE_MOVIE_REACTIONS = 'UPDATE_MOVIE_REACTIONS';
