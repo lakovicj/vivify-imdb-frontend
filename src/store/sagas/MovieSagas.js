@@ -33,8 +33,17 @@ export function* movieGetById({ payload }) {
 
 export function* moviesSearch({ payload }) {
   try {
-    // dodaj debounce
     const { data } = yield call(movieService.searchMovies, payload);
+    yield put(setMovies(data.movies));
+    yield put(setTotalMovies(data.totalMovies));
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export function* moviesFilter({ payload }) {
+  try {
+    const { data } = yield call(movieService.filterMovies, payload);
     yield put(setMovies(data.movies));
     yield put(setTotalMovies(data.totalMovies));
   } catch (error) {

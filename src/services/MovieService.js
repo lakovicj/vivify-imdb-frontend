@@ -2,7 +2,8 @@ import ApiService from './ApiService';
 
 const ENDPOINTS = {
   MOVIES: '/api/movies',
-  SEARCH_MOVIES: '/api/search/movies'
+  SEARCH_MOVIES: '/api/search/movies',
+  FILTER_MOVIES: '/api/filter/movies'
 };
 
 class MovieService extends ApiService {
@@ -28,6 +29,11 @@ class MovieService extends ApiService {
 
   searchMovies = ({ page, perPage, title }) => {
     const endpoint = `${ENDPOINTS.SEARCH_MOVIES}?perPage=${perPage}&page=${page}&title=${title}`;
+    return this.apiClient.get(endpoint);
+  }
+
+  filterMovies = ({ page, perPage, filter }) => {
+    const endpoint = `${ENDPOINTS.FILTER_MOVIES}?perPage=${perPage}&page=${page}&filter=${filter}`;
     return this.apiClient.get(endpoint);
   }
 
