@@ -1,4 +1,4 @@
-import { SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS } from '../actions/types/MovieActionTypes';
+import { LOAD_MORE_COMMENTS, LOAD_NEW_COMMENT, SET_COMMENTS, SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS } from '../actions/types/MovieActionTypes';
 
 const initialState = {
   all: [],
@@ -33,6 +33,52 @@ const movieReducer = (state = initialState, action) => {
         all: updatedMovies,
         selectedMovie: updatedMovie
       }
+    case SET_COMMENTS:
+      return {
+        ...state,
+        selectedMovie: {
+          ...state.selectedMovie,
+          comments: action.payload.comments,
+          totalComments: action.payload.totalComments,
+          currentPage: action.payload.currentPage,
+          perPage: action.payload.perPage
+        }
+      }
+    case LOAD_MORE_COMMENTS:
+      const newComments = action.payload.comments.filter((comment) => {
+        let flag = true;
+        state.selectedMovie.comments.forEach(c => {
+          if (c.id === comment.id) {
+            flag = false;
+          }
+        });
+        return flag;
+      });
+
+      return {
+        ...state,
+        selectedMovie: {
+          ...state.selectedMovie,
+          comments: [
+            ...state.selectedMovie.comments,
+            ...newComments
+          ],
+          totalComments: action.payload.totalComments,
+          currentPage: action.payload.currentPage,
+          perPage: action.payload.perPage
+        }
+      }
+      case LOAD_NEW_COMMENT:
+        return {
+          ...state,
+          selectedMovie: {
+            ...state.selectedMovie,
+            comments: [
+              action.payload,
+              ...state.selectedMovie.comments
+            ]
+          }
+        }
     default:
       return state;
   }

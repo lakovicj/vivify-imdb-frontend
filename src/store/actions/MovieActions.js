@@ -1,4 +1,4 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES, REACT_ON_MOVIE, UPDATE_MOVIE_REACTIONS } from './types/MovieActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES, REACT_ON_MOVIE, UPDATE_MOVIE_REACTIONS, SET_COMMENTS, LOAD_MORE_COMMENTS, FETCH_MORE_COMMENTS, POST_COMMENT, LOAD_NEW_COMMENT } from './types/MovieActionTypes';
 
 export const getMovies = () => {
   return {
@@ -65,6 +65,41 @@ export const reactOnMovie = payload => {
 export const updateMovieReactions = payload => {
   return {
     type: UPDATE_MOVIE_REACTIONS,
+    payload
+  }
+}
+
+export const setComments = payload => {
+  return {
+    type: SET_COMMENTS,
+    payload
+  }
+}
+
+export const fetchMoreComments = payload => {
+  return {
+    type: FETCH_MORE_COMMENTS,
+    payload
+  }
+}
+
+export const loadMoreComments = payload => {
+  return {
+    type: LOAD_MORE_COMMENTS,
+    payload
+  }
+}
+
+export const postComment = payload => {
+  return {
+    type: POST_COMMENT,
+    payload
+  }
+}
+
+export const loadNewComment = payload => {
+  return {
+    type: LOAD_NEW_COMMENT,
     payload
   }
 }

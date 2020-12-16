@@ -52,9 +52,7 @@ class MovieService extends ApiService {
   }
 
   getToken = () => {
-    console.log("getToken()");
     const user = localStorage.getItem('user');
-    console.log("User:", user);
     return user ? JSON.parse(user).access_token : undefined;
   };
 

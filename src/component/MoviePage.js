@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMovieById, reactOnMovie } from '../store/actions/MovieActions';
+import '../App.css';
+import CommentsSection from './CommentsSection';
 
 class MoviePage extends Component {
 
     componentDidMount() {
         const movieId = this.props.match.params.id;
-        this.props.getMovieById(movieId);
+        this.props.getMovieById({
+            id: movieId
+        });
     }
 
     getReactionCount = (type) => {
@@ -44,6 +48,9 @@ class MoviePage extends Component {
                 </div>
                 <div>
                     {/* comments section */}
+                    <CommentsSection />
+                    
+
                 </div>
                 <div>
                     {/* related movies component  */}
