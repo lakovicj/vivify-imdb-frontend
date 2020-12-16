@@ -1,42 +1,65 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMovieById } from '../store/actions/MovieActions';
+import { getMovieById, reactOnMovie } from '../store/actions/MovieActions';
+import '../App.css';
+import CommentsSection from './CommentsSection';
 
-export class MoviePage extends Component {
+class MoviePage extends Component {
 
     componentDidMount() {
         const movieId = this.props.match.params.id;
-        this.props.getMovieById(movieId);
+        this.props.getMovieById({
+            id: movieId
+        });
+    }
+
+    getReactionCount = (type) => {
+        const likes = this.props.movie.reactions.filter((reaction) => reaction.type === type);
+        return likes.length;
+    }
+
+    handleReactionClick = (type) => {
+        this.props.reactOnMovie({
+            movie_id: this.props.movie.id,
+            type: type
+        })
     }
 
     render() {
         return (
-            this.props.movie && 
+            this.props.movie &&
             <div>
                 <div className="jumbotron">
                     <h1 className="display-4">{this.props.movie.title}</h1>
                     <p>{this.props.movie.genre.name}</p>
                     <div>
-                        {/* likes/dislikes  */}
+                        <button className="btn btn-outline-primary" onClick={() => this.handleReactionClick('like')}>Like</button>
+                        <span>{this.getReactionCount('like')}</span>
+                        <br />
+                        <button className="btn btn-outline-secondary" onClick={() => this.handleReactionClick('dislike')}>Dislike</button>
+                        <span>{this.getReactionCount('dislike')}</span>
                     </div>
                 </div>
                 <div className="float-left">
-                    <img src={this.props.movie.image_url} alt="..."/>
+                    <img src={this.props.movie.image_url} alt="..." />
                 </div>
                 <div>
                     <p>{this.props.movie.description}</p>
                 </div>
                 <div>
                     {/* comments section */}
+                    <CommentsSection />
+                    
+
                 </div>
                 <div>
                     {/* related movies component  */}
                 </div>
-                    
-                
+
+
 
             </div>
- 
+
         )
     }
 }
@@ -48,7 +71,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    getMovieById
+    getMovieById,
+    reactOnMovie,
 }
 
 export default connect(
