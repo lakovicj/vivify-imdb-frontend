@@ -4,7 +4,8 @@ const ENDPOINTS = {
   MOVIES: '/api/movies',
   SEARCH_MOVIES: '/api/search/movies',
   FILTER_MOVIES: '/api/filter/movies',
-  REACT_ON_MOVIE: '/api/reactions'
+  REACT_ON_MOVIE: '/api/reactions',
+  INCREMENT_VIEWS: '/api/views/movies'
 };
 
 class MovieService extends ApiService {
@@ -49,6 +50,11 @@ class MovieService extends ApiService {
   getReactionCount = (movie, type) => {
     const likes = movie.reactions.filter((reaction) => reaction.type === type);
     return likes.length;
+  }
+
+  incrementViews = (payload) => {
+    const endpoint = `${ENDPOINTS.INCREMENT_VIEWS}/${payload}`;
+    return this.apiClient.put(endpoint);
   }
 
   getToken = () => {

@@ -41,6 +41,9 @@ const MovieCard = ({ movie, reactOnMovie }) => {
             <button className="btn btn-outline-secondary" onClick={() => handleReactionClick('dislike')}>Dislike</button>
             <span>{getReactionCount('dislike')}</span>
           </li>
+          <li className="list-group-item">
+            <small className="text-muted">{movie.view_count} views</small>
+          </li>
         </ul>
         <div className="card-footer">
             <small className="text-muted">{getMovieGenre(movie)}</small>

@@ -1,4 +1,4 @@
-import { LOAD_MORE_COMMENTS, LOAD_NEW_COMMENT, SET_COMMENTS, SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS } from '../actions/types/MovieActionTypes';
+import { LOAD_MORE_COMMENTS, LOAD_NEW_COMMENT, SET_COMMENTS, SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS, UPDATE_VIEWS } from '../actions/types/MovieActionTypes';
 
 const initialState = {
   all: [],
@@ -77,6 +77,14 @@ const movieReducer = (state = initialState, action) => {
               action.payload,
               ...state.selectedMovie.comments
             ]
+          }
+        }
+      case UPDATE_VIEWS:
+        return {
+          ...state,
+          selectedMovie: {
+            ...state.selectedMovie,
+            view_count: action.payload.view_count
           }
         }
     default:

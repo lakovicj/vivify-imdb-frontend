@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getMovieById, reactOnMovie } from '../store/actions/MovieActions';
+import { getMovieById, reactOnMovie, incrementViews } from '../store/actions/MovieActions';
 import '../App.css';
 import CommentsSection from './CommentsSection';
 
@@ -39,6 +39,9 @@ class MoviePage extends Component {
                         <button className="btn btn-outline-secondary" onClick={() => this.handleReactionClick('dislike')}>Dislike</button>
                         <span>{this.getReactionCount('dislike')}</span>
                     </div>
+                    <div>
+                        <small className="text-muted">{this.props.movie.view_count} views</small>
+                    </div>
                 </div>
                 <div className="float-left">
                     <img src={this.props.movie.image_url} alt="..." />
@@ -73,6 +76,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     getMovieById,
     reactOnMovie,
+    incrementViews
 }
 
 export default connect(

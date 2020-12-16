@@ -18,6 +18,6 @@ export default function* rootSaga() {
     takeLatest(FILTER_MOVIES, moviesFilter),
     takeLatest(REACT_ON_MOVIE, moviesReaction),
     takeLatest(FETCH_MORE_COMMENTS, commentsLoadMore),
-    takeLatest(POST_COMMENT, commentsPostNew)
+    takeLatest(POST_COMMENT, commentsPostNew),
   ]);
 }
