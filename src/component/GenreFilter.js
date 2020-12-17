@@ -46,12 +46,15 @@ export class GenreFilter extends Component {
 
     render() {
         return (
-            <div>
-                <label>Filter: 
-                    <select onChange={this.handleChange} value={this.state.selectedGenre}>
-                        {this.renderGenres()}
-                    </select>
-                </label>
+            <div className="card my-4">
+                <h5 className="card-header">Filter</h5>
+                <div className="card-body">
+                    <div className="input-group">
+                        <select onChange={this.handleChange} value={this.state.selectedGenre}>
+                            {this.renderGenres()}
+                        </select>
+                    </div>
+                </div>
             </div>
         )
     }

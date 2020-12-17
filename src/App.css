@@ -54,6 +54,7 @@ body{margin-top:20px;}
 #comments {
     box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
 	background-color:#FFFFFF;
+	margin-top: 40px;
 }
 
 #comments form {
@@ -124,4 +125,19 @@ body{margin-top:20px;}
 	color:#666666;
 	font-size:15px;
 	margin-right:10px;
+}
+
+.reaction-btn {
+	width: 78px;
+	margin-bottom: 2px;
+	margin-right: 10px;
+}
+
+.reaction-btns-div {
+	margin-bottom: 10px;
+}
+
+.img-div-movie-page {
+	max-width: 300px;
+	max-height: 300px;
 }

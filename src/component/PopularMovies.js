@@ -5,7 +5,7 @@ class PopularMovies extends Component {
 
     renderMovieLinks = () => {
         return this.props.popularMovies ? this.props.popularMovies.map((movie, index) => {
-            return <li>{`${index + 1}. `}<Link to={`/movie/${movie.id}`}>{movie.title}</Link></li>
+            return <li key={movie.id}>{`${index + 1}. `}<Link to={`/movie/${movie.id}`}>{movie.title}</Link></li>
         }) : null;
     }
 

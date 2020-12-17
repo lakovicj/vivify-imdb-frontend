@@ -25,43 +25,52 @@ class MoviePage extends Component {
         })
     }
 
+
     render() {
         return (
             this.props.movie &&
             <div>
                 <div className="jumbotron">
                     <h1 className="display-4">{this.props.movie.title}</h1>
-                    <p>{this.props.movie.genre.name}</p>
-                    <div>
-                        <button className="btn btn-outline-primary" onClick={() => this.handleReactionClick('like')}>Like</button>
-                        <span>{this.getReactionCount('like')}</span>
+                    <small>{this.props.movie.genre.name}</small>
+                    <hr />
+                    <div className="reaction-btns-div">
+                        <button className="btn btn-outline-primary reaction-btn" onClick={() => this.handleReactionClick('like')}>Like</button>
+                        <span>{this.getReactionCount('like')} likes</span>
                         <br />
-                        <button className="btn btn-outline-secondary" onClick={() => this.handleReactionClick('dislike')}>Dislike</button>
-                        <span>{this.getReactionCount('dislike')}</span>
+                        <button className="btn btn-outline-secondary reaction-btn" onClick={() => this.handleReactionClick('dislike')}>Dislike</button>
+                        <span>{this.getReactionCount('dislike')} dislikes</span>
                     </div>
                     <div>
                         <small className="text-muted">{this.props.movie.view_count} views</small>
                     </div>
                 </div>
-                <div className="float-left">
-                    <img src={this.props.movie.image_url} alt="..." />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-9">
+                            <div className="row">
+                                <div className="col-lg-5">
+                                    <div className="img-div-movie-page">
+                                        <img className="img-fluid" src={this.props.movie.image_url} alt="..." />
+                                    </div>
+                                </div>
+                                <div className="col-lg-7">
+                                    <p>{this.props.movie.description}</p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <CommentsSection />
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div className="col-lg-3"> 
+                            {/* related movies ce ovde biti */}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p>{this.props.movie.description}</p>
-                </div>
-                <div>
-                    {/* comments section */}
-                    <CommentsSection />
-                    
-
-                </div>
-                <div>
-                    {/* related movies component  */}
-                </div>
-
-
-
-            </div>
+            </div>            
 
         )
     }

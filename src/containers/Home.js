@@ -24,24 +24,19 @@ class Home extends Component {
         <div className="jumbotron">
           <h2 className="display-4">Welcome to Pocket IMDB</h2>
         </div>
-        <div className="row">
+        <div className="container">
           <div className="row">
-            <GenreFilter genres={this.props.genres} filterMovies={this.props.filterMovies} getAll={this.props.getMoviesByPage}/>
-          </div>
-          <div className="row">
-            <SearchInput searchMovies={this.props.searchMovies} getMoviesByPage={this.props.getMoviesByPage}/>
-          </div>
-          <div className="row">
-            <div className="col-lg-9">
+            <div className="col-lg-8">
               <MovieList movies={this.props.movies} />
-              <Pagination totalMovies={this.props.totalMovies} getMoviesByPage={this.props.getMoviesByPage}/>
+              <Pagination totalMovies={this.props.totalMovies} getMoviesByPage={this.props.getMoviesByPage} />
             </div>
-            <div className="col-lg-3">
+            <div className="col-lg-4">
+              <SearchInput searchMovies={this.props.searchMovies} getMoviesByPage={this.props.getMoviesByPage} />
+              <GenreFilter genres={this.props.genres} filterMovies={this.props.filterMovies} getAll={this.props.getMoviesByPage} />
               <PopularMovies popularMovies={this.props.popularMovies} />
             </div>
           </div>
-          
-        </div>  
+        </div>
       </div>
     );
   }
