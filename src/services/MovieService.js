@@ -5,7 +5,8 @@ const ENDPOINTS = {
   SEARCH_MOVIES: '/api/search/movies',
   FILTER_MOVIES: '/api/filter/movies',
   REACT_ON_MOVIE: '/api/reactions',
-  INCREMENT_VIEWS: '/api/views/movies'
+  INCREMENT_VIEWS: '/api/views/movies',
+  POPULAR_MOVIES: '/api/popular'
 };
 
 class MovieService extends ApiService {
@@ -55,6 +56,10 @@ class MovieService extends ApiService {
   incrementViews = (payload) => {
     const endpoint = `${ENDPOINTS.INCREMENT_VIEWS}/${payload}`;
     return this.apiClient.put(endpoint);
+  }
+
+  getPopularMovies = () => {
+    return this.apiClient.get(ENDPOINTS.POPULAR_MOVIES);
   }
 
   getToken = () => {

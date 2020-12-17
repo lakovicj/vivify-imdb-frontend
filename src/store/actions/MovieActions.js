@@ -1,4 +1,4 @@
-import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES, REACT_ON_MOVIE, UPDATE_MOVIE_REACTIONS, SET_COMMENTS, LOAD_MORE_COMMENTS, FETCH_MORE_COMMENTS, POST_COMMENT, LOAD_NEW_COMMENT, INCREMENT_VIEWS, UPDATE_VIEWS } from './types/MovieActionTypes';
+import { GET_MOVIES, SET_MOVIES, GET_MOVIES_BY_PAGE, SET_TOTAL_MOVIES, GET_MOVIE_BY_ID, SET_MOVIE, SEARCH_MOVIES, FILTER_MOVIES, REACT_ON_MOVIE, UPDATE_MOVIE_REACTIONS, SET_COMMENTS, LOAD_MORE_COMMENTS, FETCH_MORE_COMMENTS, POST_COMMENT, LOAD_NEW_COMMENT, INCREMENT_VIEWS, UPDATE_VIEWS, GET_POPULAR_MOVIES, SET_POPULAR_MOVIES } from './types/MovieActionTypes';
 
 export const getMovies = () => {
   return {
@@ -114,6 +114,19 @@ export const incrementViews = payload => {
 export const updateViews = payload => {
   return {
     type: UPDATE_VIEWS,
+    payload
+  }
+}
+
+export const getPopularMovies = () => {
+  return {
+    type: GET_POPULAR_MOVIES
+  }
+}
+
+export const setPopularMovies = payload => {
+  return {
+    type: SET_POPULAR_MOVIES,
     payload
   }
 }

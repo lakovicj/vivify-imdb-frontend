@@ -1,9 +1,10 @@
-import { LOAD_MORE_COMMENTS, LOAD_NEW_COMMENT, SET_COMMENTS, SET_MOVIE, SET_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS, UPDATE_VIEWS } from '../actions/types/MovieActionTypes';
+import { LOAD_MORE_COMMENTS, LOAD_NEW_COMMENT, SET_COMMENTS, SET_MOVIE, SET_MOVIES, SET_POPULAR_MOVIES, SET_TOTAL_MOVIES, UPDATE_MOVIE_REACTIONS, UPDATE_VIEWS } from '../actions/types/MovieActionTypes';
 
 const initialState = {
   all: [],
   totalMovies: 0,
-  selectedMovie: null
+  selectedMovie: null,
+  popularMovies: []
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -86,6 +87,13 @@ const movieReducer = (state = initialState, action) => {
             ...state.selectedMovie,
             view_count: action.payload.view_count
           }
+        }
+      case SET_POPULAR_MOVIES:
+        return {
+          ...state,
+          popularMovies: [
+            ...action.payload
+          ]
         }
     default:
       return state;

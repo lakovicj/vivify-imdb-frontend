@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { movieService } from '../../services/MovieService';
 import { commentService } from '../../services/CommentService';
-import { setMovie, setMovies, setTotalMovies, updateMovieReactions, setComments, loadMoreComments, loadNewComment, updateViews } from '../actions/MovieActions';
+import { setMovie, setMovies, setTotalMovies, updateMovieReactions, setComments, loadMoreComments, loadNewComment, updateViews, setPopularMovies } from '../actions/MovieActions';
 
 export function* moviesGet() {
   try {
@@ -83,3 +83,11 @@ export function* commentsPostNew({ payload }) {
   }
 }
 
+export function* moviesGetPopular() {
+  try {
+    const { data } = yield call(movieService.getPopularMovies);
+    yield put(setPopularMovies(data));
+  } catch (error) {
+    console.log(error)
+  }
+}
