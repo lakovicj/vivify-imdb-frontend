@@ -46,14 +46,19 @@ export class SearchInput extends Component {
 
     render() {
         return (
-            <div>
-                <input 
-                    className="input-group" 
-                    type="text"
-                    name="searchInput"
-                    placeholder="Search..."
-                    value={this.state.searchInput}
-                    onChange={this.handleOnChange}/>
+            <div className="card my-4">
+                <h5 className="card-header">Search</h5>
+                <div className="card-body">
+                    <div className="input-group">
+                        <input 
+                        className="input-group" 
+                        type="text"
+                        name="searchInput"
+                        placeholder="Search..."
+                        value={this.state.searchInput}
+                        onChange={this.handleOnChange}/>
+                    </div>
+                </div>
             </div>
         )
     }
