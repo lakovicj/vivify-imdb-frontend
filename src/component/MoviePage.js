@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMovieById, reactOnMovie, incrementViews } from '../store/actions/MovieActions';
+import { postNewWatchlistItem, removeWatchlistItem } from '../store/actions/WatchlistActions';
 import '../App.css';
 import CommentsSection from './CommentsSection';
 
@@ -25,6 +26,30 @@ class MoviePage extends Component {
         })
     }
 
+    handleAddToWatchlistClick = () => {
+        this.props.postNewWatchlistItem({
+            movie_id: this.props.movie.id
+        })
+    }
+
+    renderWatchlistButton = () => {
+        let items = this.props.watchlist.filter(it => it.movie_id === this.props.movie.id);
+
+        return items.length !== 0 ?
+            <button className="btn btn-outline-danger" onClick={() => this.props.removeWatchlistItem(items[0].id)}>Remove From Watchlist</button>
+            :
+            <button className="btn btn-outline-primary" onClick={() => this.handleAddToWatchlistClick()}>Add Movie To Watchlist</button>
+    }
+
+    renderWatchlistLabel = () => {
+        let items = this.props.watchlist.filter(it => it.movie_id === this.props.movie.id);
+        if (items.length) {
+            return items[0].watched ?
+                <small className="text-secondary">You've watched this!</small>
+                :
+                null;
+        }
+    }
 
     render() {
         return (
@@ -44,6 +69,12 @@ class MoviePage extends Component {
                     <div>
                         <small className="text-muted">{this.props.movie.view_count} views</small>
                     </div>
+                    <hr />
+                    <div>
+                        {this.renderWatchlistButton()}
+                        <br />
+                        {this.renderWatchlistLabel()}
+                    </div>
                 </div>
                 <div className="container">
                     <div className="row">
@@ -62,15 +93,15 @@ class MoviePage extends Component {
                                 <div className="col-lg-12">
                                     <CommentsSection />
                                 </div>
-                                
+
                             </div>
                         </div>
-                        <div className="col-lg-3"> 
+                        <div className="col-lg-3">
                             {/* related movies ce ovde biti */}
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
 
         )
     }
@@ -79,13 +110,16 @@ class MoviePage extends Component {
 const mapStateToProps = state => {
     return {
         movie: state.movie.selectedMovie,
+        watchlist: state.watchlist.items
     };
 };
 
 const mapDispatchToProps = {
     getMovieById,
     reactOnMovie,
-    incrementViews
+    incrementViews,
+    postNewWatchlistItem,
+    removeWatchlistItem
 }
 
 export default connect(

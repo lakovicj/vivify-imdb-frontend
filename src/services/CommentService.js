@@ -7,11 +7,6 @@ const ENDPOINTS = {
 
 class CommentService extends ApiService {
 
-    constructor() {
-        super();
-        this.setAuthorizationHeader();
-    }
-
     getCommentsByMovie = (payload) => {
         let endpoint = '';
         if (payload.hasOwnProperty('page') && payload.hasOwnProperty('perPage')) {

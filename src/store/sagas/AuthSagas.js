@@ -7,7 +7,6 @@ import AuthService from '../../services/AuthService';
 export function* userLogin({ payload }) {
   try {
     yield call(AuthService.login, payload);
-
     yield put(authUser(true));
     yield put(push('/home'));
     yield put(go());

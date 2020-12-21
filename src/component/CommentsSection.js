@@ -48,7 +48,7 @@ class CommentsSection extends Component {
     }
 
     renderSubmitBtn = () => {
-        return this.state.commentText !== '';
+        return this.state.commentText;
     }
 
     renderComments = () => {

@@ -11,11 +11,6 @@ const ENDPOINTS = {
 
 class MovieService extends ApiService {
 
-  constructor() {
-    super();
-    this.setAuthorizationHeader();
-  }
-
   getMovies = () => {
     return this.apiClient.get(ENDPOINTS.MOVIES);
   };

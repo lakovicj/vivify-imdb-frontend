@@ -5,6 +5,8 @@ import { FILTER_MOVIES, GET_MOVIES, GET_MOVIES_BY_PAGE, GET_MOVIE_BY_ID, FETCH_M
 import { userLogin, userRegister } from './AuthSagas';
 import { movieGetById, moviesGet, moviesGetByPage, moviesSearch, moviesFilter, moviesReaction, commentsLoadMore, commentsPostNew, moviesGetPopular } from './MovieSagas';
 import { genresGet } from './GenreSagas';
+import { EDIT_WATCHLIST_ITEM, GET_WATCHLIST, POST_NEW_WATCHLIST_ITEM, REMOVE_WATCHLIST_ITEM } from '../actions/types/WatchlistTypes';
+import { watchlistEditItem, watchlistGet, watchlistPostNewItem, watchlistRemoveItem } from './WatchlistSagas';
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +21,10 @@ export default function* rootSaga() {
     takeLatest(REACT_ON_MOVIE, moviesReaction),
     takeLatest(FETCH_MORE_COMMENTS, commentsLoadMore),
     takeLatest(POST_COMMENT, commentsPostNew),
-    takeLatest(GET_POPULAR_MOVIES, moviesGetPopular)
+    takeLatest(GET_POPULAR_MOVIES, moviesGetPopular),
+    takeLatest(GET_WATCHLIST, watchlistGet),
+    takeLatest(POST_NEW_WATCHLIST_ITEM, watchlistPostNewItem),
+    takeLatest(EDIT_WATCHLIST_ITEM, watchlistEditItem),
+    takeLatest(REMOVE_WATCHLIST_ITEM, watchlistRemoveItem)
   ]);
 }
