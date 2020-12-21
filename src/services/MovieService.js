@@ -56,7 +56,7 @@ class MovieService extends ApiService {
   getPopularMovies = () => {
     return this.apiClient.get(ENDPOINTS.POPULAR_MOVIES);
   }
-
+  
   getToken = () => {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user).access_token : undefined;
