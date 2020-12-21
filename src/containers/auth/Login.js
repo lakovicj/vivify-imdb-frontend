@@ -1,48 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
+import { Formik, Form, Field } from 'formik';
 import { logIn } from '../../store/actions/AuthActions';
+import { loginSchema } from '../forms/validation/authSchemas';
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: ''
-  };
 
-  handleInputChange = field => event => this.setState({ [field]: event.target.value });
-
-  submit = event => {
-    event.preventDefault();
-
-    let logInData = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.props.logIn(logInData);
-  };
+  submit = (credentials, setSubmitting) => {
+    this.props.logIn(credentials);
+    setSubmitting(false);
+  }
 
   render() {
     return (
+
       <div>
-        <form onSubmit={this.submit}>
-          <h2>Log In</h2>
-          <input
-            type="text"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleInputChange('email')}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleInputChange('password')}
-          />
-          <input type="submit" value="Log in" />
-          {this.props.loginError && <p>Login error</p>}
-        </form>
+        <div className="jumbotron">
+          <h2 className="display-4">Welcome to Pocket IMDB</h2>
+          <h3 className="display-5">Log In</h3>
+        </div>
+        <Formik
+          initialValues={{
+            email: '',
+            password: ''
+          }}
+          validationSchema={loginSchema}
+          onSubmit={(values, { setSubmitting }) => this.submit(values, setSubmitting)}
+        >
+          {({ errors, touched, isSubmitting }) => (
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
+                  <article className="card-body">
+                    <Form autoComplete="off">
+                      <div className="form-group">
+                        <Field type="email" name="email" placeholder="Email" className="form-control" />
+                        {touched.email && errors.email && <small className="text-danger">{errors.email}</small>}
+                      </div>
+                      <div className="form-group">
+                        <Field type="password" name="password" placeholder="Password" className="form-control" />
+                        {touched.password && errors.password && <small className="text-danger">{errors.password}</small>}
+                      </div>
+                      {this.props.loginError && <p className="text-danger">Bad credentials!</p>}
+                      <button disabled={isSubmitting} type="submit" className="btn btn-outline-primary">Log In</button>
+                    </Form>
+                  </article>
+                </div>
+              </div>
+            </div>
+          )}
+        </Formik>
       </div>
+
+
     );
   }
 }
